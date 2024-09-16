@@ -1,6 +1,5 @@
 import dotenv from 'dotenv';
 import express from 'express';
-import fs from 'fs';
 dotenv.config();
 
 // Import the routes

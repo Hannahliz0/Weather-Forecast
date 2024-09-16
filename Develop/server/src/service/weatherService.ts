@@ -34,13 +34,13 @@ class WeatherService {
  private baseURL: string;
   private apiKey: string;
   private cityName: string;
-  private query: string;
+  //private query: string;
 
   constructor() {
-    this.baseURL = 'https://api.openweathermap.org/data/2.5/';
+    this.baseURL = 'https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={1b43305a262ad68330221ce0af653587}';
     this.apiKey = '';
     this.cityName = '';
-    this.query = '';
+    //this.query = '';
   }
 
   // TODO: Create fetchLocationData method

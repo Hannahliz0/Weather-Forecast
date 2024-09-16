@@ -21,11 +21,11 @@ class HistoryService {
         console.log(data);
       }
     }
-  }
+    )};
 
 
   // TODO: Define a write method that writes the updated cities array to the searchHistory.json file
-  private async write(cities: City[]): void {
+  private async write(cities: City[]){
     fs.writeFile('searchHistory.json', JSON.stringify(cities), (err) => {
       if (err) {
         console.log(err);
@@ -44,11 +44,32 @@ class HistoryService {
 
 
   // TODO Define an addCity method that adds a city to the searchHistory.json file
-  async addCity(city: string) {}
+  async addCity(city: string) {
+    fs.readFile('searchHistory.json', 'utf8', (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        const cities = JSON.parse(data);
+        cities.push(city);
+        this.write(cities);
+      }
+    }
+    )
+  }
 
 
   // * BONUS TODO: Define a removeCity method that removes a city from the searchHistory.json file
   async removeCity(id: string) {
+    fs.readFile('searchHistory.json', 'utf8', (err, data) => {
+      if (err) {
+        console.log(err);
+      } else {
+        const cities = JSON.parse(data);
+        const updatedCities = cities.filter((city: City) => city.id !== id);
+        this.write(updatedCities);
+      }
+    }
+    )
   }
 
 }
