@@ -1,5 +1,6 @@
 import './styles/jass.css';
 
+
 // * All necessary DOM elements selected
 const searchForm: HTMLFormElement = document.getElementById(
   'search-form'
@@ -35,6 +36,7 @@ API Calls
 */
 
 const fetchWeather = async (cityName: string) => {
+  
   const response = await fetch('/api/weather/', {
     method: 'POST',
     headers: {
@@ -44,8 +46,6 @@ const fetchWeather = async (cityName: string) => {
   });
 
   const weatherData = await response.json();
-
-  console.log('weatherData: ', weatherData);
 
   renderCurrentWeather(weatherData[0]);
   renderForecast(weatherData.slice(1));
@@ -199,6 +199,7 @@ const createForecastCard = () => {
     tempEl,
     windEl,
     humidityEl,
+  
   };
 };
 
@@ -251,7 +252,7 @@ Event Handlers
 
 const handleSearchFormSubmit = (event: any): void => {
   event.preventDefault();
-
+  
   if (!searchInput.value) {
     throw new Error('City cannot be blank');
   }
@@ -285,7 +286,7 @@ Initial Render
 const getAndRenderHistory = () =>
   fetchSearchHistory().then(renderSearchHistory);
 
-searchForm?.addEventListener('submit', handleSearchFormSubmit);
+searchForm.addEventListener('submit', handleSearchFormSubmit);
 searchHistoryContainer?.addEventListener('click', handleSearchHistoryClick);
 
 getAndRenderHistory();
